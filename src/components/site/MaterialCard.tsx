@@ -10,7 +10,7 @@ export function MaterialCard({
   distanceKm,
 }: {
   material: Material;
-  distanceKm?: number;
+  distanceKm?: number | undefined;
 }) {
   const { getIndustry } = useApp();
   const seller = getIndustry(material.sellerId);

@@ -12,7 +12,7 @@ import { CATEGORIES, type Category } from "@/lib/mock-data";
 import { DISTANCE_OPTIONS, distanceKm, formatMoney } from "@/lib/geo";
 import { useApp } from "@/lib/store";
 
-type BuySearch = { category?: Category };
+type BuySearch = { category?: Category | undefined };
 
 export const Route = createFileRoute("/buy")({
   validateSearch: (search: Record<string, unknown>): BuySearch => ({

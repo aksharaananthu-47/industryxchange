@@ -6,7 +6,7 @@ import { formatMoney } from "@/lib/geo";
 import { useApp } from "@/lib/store";
 import { VerifiedBadge } from "./badges";
 
-type Point = { material: Material; distance?: number };
+type Point = { material: Material; distance?: number | undefined };
 
 /**
  * Lightweight interactive location map. Markers are plotted from real
