@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BuyRouteImport } from './routes/buy'
+import { Route as SellRouteImport } from './routes/sell'
+import { Route as TransactionsRouteImport } from './routes/transactions'
 import { Route as MaterialMaterialIdRouteImport } from './routes/material.$materialId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +25,16 @@ const BuyRoute = BuyRouteImport.update({
   path: '/buy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SellRoute = SellRouteImport.update({
+  id: '/sell',
+  path: '/sell',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TransactionsRoute = TransactionsRouteImport.update({
+  id: '/transactions',
+  path: '/transactions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MaterialMaterialIdRoute = MaterialMaterialIdRouteImport.update({
   id: '/material/$materialId',
   path: '/material/$materialId',
@@ -32,30 +44,44 @@ const MaterialMaterialIdRoute = MaterialMaterialIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/buy': typeof BuyRoute
+  '/sell': typeof SellRoute
+  '/transactions': typeof TransactionsRoute
   '/material/$materialId': typeof MaterialMaterialIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/buy': typeof BuyRoute
+  '/sell': typeof SellRoute
+  '/transactions': typeof TransactionsRoute
   '/material/$materialId': typeof MaterialMaterialIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/buy': typeof BuyRoute
+  '/sell': typeof SellRoute
+  '/transactions': typeof TransactionsRoute
   '/material/$materialId': typeof MaterialMaterialIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/buy' | '/material/$materialId'
+  fullPaths: '/' | '/buy' | '/sell' | '/transactions' | '/material/$materialId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/buy' | '/material/$materialId'
-  id: '__root__' | '/' | '/buy' | '/material/$materialId'
+  to: '/' | '/buy' | '/sell' | '/transactions' | '/material/$materialId'
+  id:
+    | '__root__'
+    | '/'
+    | '/buy'
+    | '/sell'
+    | '/transactions'
+    | '/material/$materialId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BuyRoute: typeof BuyRoute
+  SellRoute: typeof SellRoute
+  TransactionsRoute: typeof TransactionsRoute
   MaterialMaterialIdRoute: typeof MaterialMaterialIdRoute
 }
 
@@ -75,6 +101,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BuyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sell': {
+      id: '/sell'
+      path: '/sell'
+      fullPath: '/sell'
+      preLoaderRoute: typeof SellRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/transactions': {
+      id: '/transactions'
+      path: '/transactions'
+      fullPath: '/transactions'
+      preLoaderRoute: typeof TransactionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/material/$materialId': {
       id: '/material/$materialId'
       path: '/material/$materialId'
@@ -88,6 +128,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BuyRoute: BuyRoute,
+  SellRoute: SellRoute,
+  TransactionsRoute: TransactionsRoute,
   MaterialMaterialIdRoute: MaterialMaterialIdRoute,
 }
 export const routeTree = rootRouteImport
