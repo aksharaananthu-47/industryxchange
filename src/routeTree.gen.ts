@@ -11,8 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BuyRouteImport } from './routes/buy'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as SellRouteImport } from './routes/sell'
 import { Route as TransactionsRouteImport } from './routes/transactions'
+import { Route as CompanyIndustryIdRouteImport } from './routes/company.$industryId'
 import { Route as MaterialMaterialIdRouteImport } from './routes/material.$materialId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -25,6 +29,21 @@ const BuyRoute = BuyRouteImport.update({
   path: '/buy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SellRoute = SellRouteImport.update({
   id: '/sell',
   path: '/sell',
@@ -33,6 +52,11 @@ const SellRoute = SellRouteImport.update({
 const TransactionsRoute = TransactionsRouteImport.update({
   id: '/transactions',
   path: '/transactions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompanyIndustryIdRoute = CompanyIndustryIdRouteImport.update({
+  id: '/company/$industryId',
+  path: '/company/$industryId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MaterialMaterialIdRoute = MaterialMaterialIdRouteImport.update({
@@ -44,44 +68,82 @@ const MaterialMaterialIdRoute = MaterialMaterialIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/buy': typeof BuyRoute
+  '/login': typeof LoginRoute
+  '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
   '/transactions': typeof TransactionsRoute
+  '/company/$industryId': typeof CompanyIndustryIdRoute
   '/material/$materialId': typeof MaterialMaterialIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/buy': typeof BuyRoute
+  '/login': typeof LoginRoute
+  '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
   '/transactions': typeof TransactionsRoute
+  '/company/$industryId': typeof CompanyIndustryIdRoute
   '/material/$materialId': typeof MaterialMaterialIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/buy': typeof BuyRoute
+  '/login': typeof LoginRoute
+  '/profile': typeof ProfileRoute
+  '/register': typeof RegisterRoute
   '/sell': typeof SellRoute
   '/transactions': typeof TransactionsRoute
+  '/company/$industryId': typeof CompanyIndustryIdRoute
   '/material/$materialId': typeof MaterialMaterialIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/buy' | '/sell' | '/transactions' | '/material/$materialId'
+  fullPaths:
+    | '/'
+    | '/buy'
+    | '/login'
+    | '/profile'
+    | '/register'
+    | '/sell'
+    | '/transactions'
+    | '/company/$industryId'
+    | '/material/$materialId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/buy' | '/sell' | '/transactions' | '/material/$materialId'
+  to:
+    | '/'
+    | '/buy'
+    | '/login'
+    | '/profile'
+    | '/register'
+    | '/sell'
+    | '/transactions'
+    | '/company/$industryId'
+    | '/material/$materialId'
   id:
     | '__root__'
     | '/'
     | '/buy'
+    | '/login'
+    | '/profile'
+    | '/register'
     | '/sell'
     | '/transactions'
+    | '/company/$industryId'
     | '/material/$materialId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BuyRoute: typeof BuyRoute
+  LoginRoute: typeof LoginRoute
+  ProfileRoute: typeof ProfileRoute
+  RegisterRoute: typeof RegisterRoute
   SellRoute: typeof SellRoute
   TransactionsRoute: typeof TransactionsRoute
+  CompanyIndustryIdRoute: typeof CompanyIndustryIdRoute
   MaterialMaterialIdRoute: typeof MaterialMaterialIdRoute
 }
 
@@ -101,6 +163,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BuyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sell': {
       id: '/sell'
       path: '/sell'
@@ -113,6 +196,13 @@ declare module '@tanstack/react-router' {
       path: '/transactions'
       fullPath: '/transactions'
       preLoaderRoute: typeof TransactionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/company/$industryId': {
+      id: '/company/$industryId'
+      path: '/company/$industryId'
+      fullPath: '/company/$industryId'
+      preLoaderRoute: typeof CompanyIndustryIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/material/$materialId': {
@@ -128,8 +218,12 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BuyRoute: BuyRoute,
+  LoginRoute: LoginRoute,
+  ProfileRoute: ProfileRoute,
+  RegisterRoute: RegisterRoute,
   SellRoute: SellRoute,
   TransactionsRoute: TransactionsRoute,
+  CompanyIndustryIdRoute: CompanyIndustryIdRoute,
   MaterialMaterialIdRoute: MaterialMaterialIdRoute,
 }
 export const routeTree = rootRouteImport
